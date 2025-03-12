@@ -1,99 +1,204 @@
+
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { Github, Twitter, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ScrollAnimation } from "@/components/ui/scroll-animation";
 
 export default function HeroSection() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const heroRef = useRef<HTMLDivElement>(null);
+  const [particlesArray, setParticlesArray] = useState<{ x: number; y: number; size: number; color: string }[]>([]);
+
+  // Efecto para generar partículas aleatorias en el fondo
+  useEffect(() => {
+    if (heroRef.current) {
+      const width = heroRef.current.offsetWidth;
+      const height = heroRef.current.offsetHeight;
+      
+      const particles = Array.from({ length: 120 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        size: Math.random() * 3 + 1.5,
+        color: getRandomColor(0.3)
+      }));
+      
+      setParticlesArray(particles);
+    }
+  }, []);
+
+  // Función para obtener un color aleatorio con opacidad
+  const getRandomColor = (opacity: number) => {
+    const colors = [
+      `rgba(114, 50, 242, ${opacity})`, // Purple
+      `rgba(200, 118, 255, ${opacity + 0.1})`, // Light Purple
+      `rgba(246, 179, 229, ${opacity + 0.2})`, // Pink
+      `rgba(163, 83, 255, ${opacity + 0.1})`, // Lavender
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
+
+  // Manejador para actualizar la posición del mouse
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (heroRef.current) {
+      const rect = heroRef.current.getBoundingClientRect();
+      setMousePosition({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top
+      });
+    }
+  };
+
   return (
-    <div className="relative min-h-screen flex items-center">
-      {/* Animated background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#010108] via-[#20115b] to-[#010108]">
-        {/* Animated grid */}
+    <section 
+      ref={heroRef}
+      className="relative min-h-screen flex flex-col justify-center items-center px-4 overflow-hidden bg-black"
+      onMouseMove={handleMouseMove}
+    >
+      {/* Partículas de fondo */}
+      {particlesArray.map((particle, index) => (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="absolute inset-0"
+          key={index}
+          className="absolute rounded-full pointer-events-none"
           style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(114,50,242,0.1) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(114,50,242,0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '40px 40px',
+            left: particle.x,
+            top: particle.y,
+            width: particle.size,
+            height: particle.size,
+            backgroundColor: particle.color,
           }}
-        />
-
-        {/* Glowing orbs */}
-        <motion.div
-          className="absolute left-1/4 top-1/4 w-64 h-64 rounded-full bg-[#7232f2] filter blur-[80px] opacity-20"
           animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.3, 0.2],
+            x: mousePosition.x ? 
+              (mousePosition.x - particle.x) * 0.02 : 0,
+            y: mousePosition.y ? 
+              (mousePosition.y - particle.y) * 0.02 : 0,
+            scale: [1, 1.05, 1],
           }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute right-1/4 bottom-1/4 w-64 h-64 rounded-full bg-[#c876ff] filter blur-[80px] opacity-20"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.3, 0.2, 0.3],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
+          transition={{ 
+            duration: 2, 
             ease: "easeInOut",
-            delay: 2
           }}
         />
-      </div>
+      ))}
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center"
-        >
-          <h1 className="text-4xl sm:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-[#f6b3e5] via-[#c876ff] to-[#7232f2] text-transparent bg-clip-text">
-              Soluciones Tecnológicas
-            </span>
-            <br />
-            <span className="text-white">
-              para tu Empresa
-            </span>
-          </h1>
+      {/* Gradiente llamativo que sigue al cursor */}
+      <motion.div
+        className="absolute w-[600px] h-[600px] rounded-full pointer-events-none opacity-30 blur-[80px] z-10"
+        animate={{
+          x: mousePosition.x - 300,
+          y: mousePosition.y - 300,
+          scale: [1, 1.05, 1],
+        }}
+        transition={{
+          type: "spring",
+          damping: 20,
+          stiffness: 180,
+          scale: {
+            duration: 2,
+            repeat: Infinity,
+            repeatType: "reverse"
+          }
+        }}
+        style={{
+          background: "radial-gradient(circle, rgba(246,179,229,0.8) 0%, rgba(200,118,255,0.6) 40%, rgba(114,50,242,0.4) 70%, rgba(0,0,0,0) 100%)",
+        }}
+      />
+      
+      {/* Segundo efecto para más profundidad */}
+      <motion.div
+        className="absolute w-[300px] h-[300px] rounded-full pointer-events-none opacity-40 blur-[50px] z-10"
+        animate={{
+          x: mousePosition.x - 150,
+          y: mousePosition.y - 150,
+          rotate: 360
+        }}
+        transition={{
+          type: "spring",
+          damping: 10,
+          stiffness: 100,
+          rotate: {
+            duration: 8,
+            repeat: Infinity,
+            ease: "linear"
+          }
+        }}
+        style={{
+          background: "conic-gradient(from 0deg, rgba(246,179,229,0.9), rgba(200,118,255,0.7), rgba(114,50,242,0.8), rgba(246,179,229,0.9))",
+        }}
+      />
 
-          <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-            Especialistas en consultoría y tecnología, ofreciendo soluciones integrales para impulsar tu negocio hacia el futuro digital.
-          </p>
+      <ScrollAnimation>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-6 max-w-4xl">
+          Soluciones tecnológicas para hacer crecer tu{" "}
+          <span className="bg-gradient-to-r from-[#f6b3e5] via-[#c876ff] to-[#7232f2] text-transparent bg-clip-text">
+            negocio
+          </span>
+        </h1>
+      </ScrollAnimation>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
+      <ScrollAnimation delay={0.1}>
+        <p className="text-xl text-gray-400 text-center mb-8 max-w-2xl">
+          Expertos en desarrollo web, aplicaciones móviles e infraestructura cloud.
+          Transformamos tus ideas en soluciones digitales de alto impacto.
+        </p>
+      </ScrollAnimation>
+
+      <ScrollAnimation delay={0.2}>
+        <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <Button
+            as="a"
+            href="#contact"
+            size="lg"
+            className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block relative group"
-            >
-              <div className="absolute -inset-1 rounded-lg bg-gradient-to-r from-[#7232f2] via-[#c876ff] to-[#f6b3e5] blur-md opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
-              <Button
-                size="lg"
-                className="relative bg-gradient-to-r from-[#7232f2] to-[#c876ff] hover:opacity-90 transition-all duration-300"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
-                Contáctanos
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      </div>
-    </div>
+            Contáctanos
+          </Button>
+          <Button
+            as="a"
+            href="#services"
+            variant="outline"
+            size="lg"
+            className="border-gray-600 text-white hover:bg-gray-800"
+          >
+            Nuestros servicios
+          </Button>
+        </div>
+      </ScrollAnimation>
+
+      <ScrollAnimation delay={0.3}>
+        <div className="flex gap-6">
+          <motion.a
+            href="https://github.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="bg-gray-800 p-3 rounded-full hover:bg-purple-600 transition-colors"
+          >
+            <Github className="text-white" size={20} />
+          </motion.a>
+          <motion.a
+            href="https://twitter.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="bg-gray-800 p-3 rounded-full hover:bg-purple-600 transition-colors"
+          >
+            <Twitter className="text-white" size={20} />
+          </motion.a>
+          <motion.a
+            href="https://linkedin.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="bg-gray-800 p-3 rounded-full hover:bg-purple-600 transition-colors"
+          >
+            <Linkedin className="text-white" size={20} />
+          </motion.a>
+        </div>
+      </ScrollAnimation>
+    </section>
   );
 }
