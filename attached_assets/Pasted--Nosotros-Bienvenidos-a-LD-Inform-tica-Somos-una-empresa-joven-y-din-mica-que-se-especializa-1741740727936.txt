@@ -1,0 +1,80 @@
+“Nosotros”
+
+Bienvenidos a LD Informática.
+
+Somos una empresa joven y dinámica que se especializa en ofrecer soluciones integrales en el ámbito de la consultoría y la tecnología. Desde nuestros inicios, nos hemos comprometido a proporcionar un servicio de calidad, enfocado en satisfacer las necesidades de nuestros clientes y resolver sus problemas con eficacia.
+
+En LD Informática, entendemos que cada cliente es único y enfrenta desafíos específicos en el ámbito informático. Es por eso que nos destacamos por nuestra capacidad para adaptarnos a las circunstancias particulares de cada proyecto y brindar soluciones personalizadas que realmente marcan la diferencia.
+
+Desde la atención al usuario hasta la resolución de problemas de mayor envergadura, nuestro equipo de profesionales altamente capacitados está siempre dispuesto a asumir nuevos retos y encontrar las mejores estrategias para alcanzar los objetivos de nuestros clientes. Nos enorgullece no solo ofrecer soluciones técnicas, sino también establecer relaciones de confianza a largo plazo con quienes confían en nosotros.
+
+En LD Informática, nos apasiona la tecnología y nos comprometemos a mantenernos actualizados con las últimas tendencias y herramientas del sector. Esto nos permite ofrecer a nuestros clientes las soluciones más innovadoras y eficientes, garantizando así su éxito en un mundo cada vez más digitalizado y competitivo.
+
+Si buscas un aliado confiable para impulsar el crecimiento y la transformación digital de tu empresa, no dudes en contactar con nosotros. En LD Informática, estamos aquí para ayudarte a alcanzar tus metas y superar tus expectativas en cada proyecto.
+
+¡Únete a nosotros en este emocionante viaje hacia el éxito tecnológico! 
+
+
+Servicio datos
+Resguardo de Datos con Veeam Backup
+
+Nuestro servicio de Resguardo de Datos con Veeam Backup ofrece una solución robusta y confiable para proteger la información crítica de tu empresa. Utilizando la avanzada tecnología de clonado de datos de Veeam, garantizamos la seguridad y disponibilidad de tus datos en todo momento.
+
+Con Veeam Backup, realizamos copias exactas de tus datos y sistemas, permitiéndonos crear réplicas instantáneas y completas de tu infraestructura informática. Esto significa que, en caso de cualquier incidente o fallo, podemos restaurar tus sistemas rápidamente y minimizar cualquier tiempo de inactividad, asegurando la continuidad del negocio.
+
+Nuestro equipo de expertos en tecnología trabaja en estrecha colaboración contigo para diseñar e implementar una estrategia de resguardo de datos personalizada que se adapte a las necesidades específicas de tu empresa. Además, monitoreamos de forma constante el proceso de respaldo para garantizar su integridad y confiabilidad.
+
+Con el servicio de Resguardo de Datos utilizando Veeam Backup, puedes tener la tranquilidad de saber que tus datos están protegidos de manera óptima y que tu empresa está preparada para hacer frente a cualquier eventualidad.
+
+
+Servicios help desktop
+
+Principales responsabilidades
+Manejo de herramientas de gestión Remota/VPN. Soporte en conectividad y diagnóstico de redes.
+Documentar interacciones y procedimientos con clientes dentro de nuestro sistema.
+Comunicarse con personal técnico y no técnico, y solucionar problemas de hardware, software, instalaciones, impresión, etc.
+Instalar y configurar la tecnología a ser empleada en la empresa, es decir, los equipos, sistemas operativos, programas y aplicaciones.
+Realizar el mantenimiento periódico de los equipos y sistemas.
+Comprender los problemas que se plantean y sus causas y encontrar la solución.
+Realizar diagnósticos del mal funcionamiento tanto en hardware como en software.
+Resolución de problemas técnicos a nivel de puestos operativos. Encontrar soluciones a cualquier falla e implementarlas.
+Colaborar en las tareas administrativas del área (gestión de órdenes de compra, recepción de servicios, etc).
+
+Soluciones para Reuniones Híbridas
+
+En LD Informática, estamos comprometidos en brindar soluciones técnicas a medida para satisfacer las necesidades específicas de nuestros clientes. Con nuestra experiencia y conocimientos técnicos, podemos ayudarte a montar salas de reunión diseñadas para reuniones híbridas con video llamadas.
+
+Ya sea que necesites integrar sistemas de videoconferencia, configurar equipos de audio y video de alta calidad, o implementar soluciones de colaboración en tiempo real, nuestro equipo técnico está aquí para ayudarte. Nos especializamos en entender tus requerimientos particulares y ofrecerte las mejores soluciones tecnológicas para asegurar el éxito de tus reuniones, ya sean presenciales o virtuales.
+
+Con nuestro enfoque técnico y nuestra atención al detalle, podemos convertir tus salas de reunión en espacios altamente funcionales y eficientes, capaces de facilitar la comunicación y la colaboración entre equipos distribuidos en diferentes ubicaciones.
+
+Confía en LD Informática para llevar tus reuniones híbridas al siguiente nivel, con soluciones técnicas que hacen que la distancia sea irrelevante y la colaboración sea fluida y productiva.
+
+
+Formulario de Registro
+
+¡Gracias por tu interés en LD Informática! Por favor, déjanos tus datos de contacto para que podamos ponernos en contacto contigo y brindarte más información sobre nuestros servicios.
+
+Nombre:
+Correo Electrónico:
+Número de Teléfono:
+Empresa (opcional):
+Comentario (opcional):
+
+Al enviar este formulario, aceptas que LD Informática utilice la información proporcionada para ponerse en contacto contigo y brindarte información relevante sobre nuestros servicios.
+
+Política de Privacidad de LD Informática
+1. Información General
+En LD Informática, nos tomamos muy en serio la privacidad de nuestros usuarios. Esta política describe cómo recopilamos, utilizamos y protegemos la información personal que nos proporcionas. Al utilizar nuestros servicios, aceptas las prácticas descritas en esta política.
+2. Información que Recopilamos
+Datos de Contacto: Recopilamos tu nombre, dirección de correo electrónico y número de teléfono para brindarte nuestros servicios de consultoría y asistencia técnica.
+3. Uso de la Información
+Utilizamos la información recopilada para:
+Proporcionar nuestros servicios de consultoría y asistencia técnica.
+Comunicarnos contigo sobre actualizaciones, promociones y novedades relacionadas con LD Informática.
+4. Compartir Información
+No compartimos tu información personal con terceros sin tu consentimiento, excepto cuando sea necesario para cumplir con la ley o proteger nuestros derechos.
+5. Seguridad
+Tomamos medidas para proteger tu información personal y garantizar su confidencialidad.
+6. Cambios en la Política de Privacidad
+Podemos actualizar esta política ocasionalmente. Te recomendamos revisarla periódicamente para estar informado sobre cualquier cambio.
