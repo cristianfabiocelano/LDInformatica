@@ -82,10 +82,11 @@ export default function TestimonialsSection() {
           </p>
         </ScrollAnimation>
 
-        <div className="relative mx-auto max-w-4xl mt-12">
+        <div className="relative mx-auto max-w-4xl mt-12" >
           <motion.div
             ref={carousel}
             className="overflow-hidden"
+            
           >
             <motion.div
               animate={{ x: -currentIndex * 100 + "%" }}
@@ -96,9 +97,10 @@ export default function TestimonialsSection() {
                 <div
                   key={testimonial.id}
                   className="min-w-full"
+                  style={{paddingBottom: "35px"}}
                 >
-                  <div className="bg-gray-900 rounded-2xl p-8 md:p-10 shadow-xl mb-10 relative h-full min-h-[320px] flex flex-col justify-between mt-10">
-                    <div>
+                  <div className="bg-gray-900 rounded-[24px] p-8 md:p-10 shadow-xl mb-10 relative h-full min-h-[200px] flex flex-col mt-8">
+                    <div className="flex-grow">
                       <div className="absolute -top-6 left-10 bg-purple-600 p-3 rounded-full">
                         <Quote className="text-white" size={24} />
                       </div>
@@ -107,7 +109,7 @@ export default function TestimonialsSection() {
                         "{testimonial.quote}"
                       </p>
                     </div>
-                    <div className="flex items-center mt-auto">
+                    <div className="flex items-center border-t border-gray-800 pt-6 mt-auto">
                       <img
                         src={testimonial.image}
                         alt={testimonial.name}

@@ -1,3 +1,4 @@
+
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import nodemailer from "nodemailer";
@@ -7,19 +8,18 @@ const contactSchema = z.object({
   name: z.string().min(1, "El nombre es requerido"),
   email: z.string().email("Email inválido"),
   phone: z.string().min(1, "El teléfono es requerido"),
-  company: z.string().optional(),
-  message: z.string().optional()
+  message: z.string().min(1, "El mensaje es requerido")
 });
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Configure email transport
   const emailTransport = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "smtp.gmail.com",
-    port: parseInt(process.env.SMTP_PORT || "587"),
-    secure: process.env.SMTP_SECURE === "true",
+    host: process.env.SMTP_HOST || "c2680627.ferozo.com",
+    port: parseInt(process.env.SMTP_PORT || "465"),
+    secure: true,
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
+      user: process.env.SMTP_USER || "info@ldi.com.ar",
+      pass: process.env.SMTP_PASS || "A@cfLwK5sI"
     }
   });
 
@@ -31,26 +31,34 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Prepare email content
       const emailContent = `
-        Nuevo contacto desde el sitio web:
+        Nuevo contacto desde el sitio web
+        ==============================
         
-        Nombre: ${data.name}
-        Email: ${data.email}
-        Teléfono: ${data.phone}
-        ${data.company ? `Empresa: ${data.company}\n` : ''}
-        ${data.message ? `Mensaje: ${data.message}` : ''}
+        Datos del contacto:
+        - Nombre: ${data.name}
+        - Email: ${data.email}
+        - Teléfono: ${data.phone}
+        
+        Mensaje:
+        ${data.message}
+        
+        ==============================
+        Enviado desde el formulario de contacto de LD Informática
       `;
 
       // Send email
       await emailTransport.sendMail({
-        from: process.env.SMTP_FROM || 'noreply@ldinformatica.com',
-        to: process.env.CONTACT_EMAIL || 'contacto@ldinformatica.com',
-        subject: 'Nuevo contacto desde el sitio web',
-        text: emailContent
+        from: process.env.SMTP_FROM || 'info@ldi.com.ar',
+        to: process.env.CONTACT_EMAIL || 'info@ldinformatica.com.ar',
+        subject: 'Nuevo contacto desde el sitio web - LD Informática',
+        text: emailContent,
+        replyTo: data.email
       });
 
-      res.status(200).json({ message: 'Formulario enviado correctamente' });
+      res.status(200).json({ message: 'Mensaje enviado correctamente' });
     } catch (error) {
-      // Handle validation errors
+      console.error('Error al enviar el email:', error);
+      
       if (error instanceof z.ZodError) {
         return res.status(400).json({
           message: 'Error de validación',
@@ -58,19 +66,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
 
-      // Log the error for debugging
-      console.error('Error al procesar el formulario de contacto:', error);
-
-      // Return generic error to client
       res.status(500).json({
-        message: 'Error al procesar el formulario. Por favor, intente nuevamente.'
+        message: 'Error al enviar el mensaje. Por favor, intente nuevamente.'
       });
     }
-  });
-
-  // Health check endpoint
-  app.get('/api/health', (_req, res) => {
-    res.status(200).json({ status: 'ok' });
   });
 
   const httpServer = createServer(app);

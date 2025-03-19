@@ -30,10 +30,16 @@ export default function ContactForm() {
     e.preventDefault();
     setStatus("loading");
     
-    // Simulación de envío (reemplazar con API real)
-    setTimeout(() => {
-      // 90% probabilidad de éxito
-      if (Math.random() > 0.1) {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      });
+
+      if (response.ok) {
         setStatus("success");
         setFormState({
           name: "",
@@ -42,9 +48,14 @@ export default function ContactForm() {
           message: "",
         });
       } else {
+        const error = await response.json();
+        console.error('Error:', error);
         setStatus("error");
       }
-    }, 1500);
+    } catch (error) {
+      console.error('Error:', error);
+      setStatus("error");
+    }
   };
 
   return (

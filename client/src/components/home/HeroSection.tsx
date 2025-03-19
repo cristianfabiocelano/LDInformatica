@@ -85,7 +85,7 @@ export default function HeroSection() {
       <motion.div
         className="absolute w-[600px] h-[600px] rounded-full pointer-events-none opacity-30 blur-[80px] z-10"
         animate={{
-          x: mousePosition.x - 300,
+          x: mousePosition.x - 900,
           y: mousePosition.y - 300,
           scale: [1, 1.05, 1],
         }}
@@ -108,7 +108,7 @@ export default function HeroSection() {
       <motion.div
         className="absolute w-[300px] h-[300px] rounded-full pointer-events-none opacity-40 blur-[50px] z-10"
         animate={{
-          x: mousePosition.x - 150,
+          x: mousePosition.x - 700,
           y: mousePosition.y - 150,
           rotate: 360
         }}
