@@ -71,7 +71,8 @@ export default function HeroSection() {
       <motion.div
         ref={logoRef}
         className="absolute -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] pointer-events-none z-0"
-        animate={{
+        initial={{ opacity: 0 }}
+          animate={{
           opacity: logoVisible ? 0.08 : 0,
           scale: logoVisible ? 1 : 1,
         }}
