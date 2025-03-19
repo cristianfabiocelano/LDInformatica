@@ -7,8 +7,21 @@ import { ScrollAnimation } from "@/components/ui/scroll-animation";
 
 export default function HeroSection() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [logoVisible, setLogoVisible] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
   const [particlesArray, setParticlesArray] = useState<{ x: number; y: number; size: number; color: string }[]>([]);
+
+  const checkLogoIntersection = (mouseX: number, mouseY: number) => {
+    if (logoRef.current) {
+      const logoRect = logoRef.current.getBoundingClientRect();
+      const distance = Math.sqrt(
+        Math.pow((mouseX - (logoRect.left + logoRect.width/2)), 2) +
+        Math.pow((mouseY - (logoRect.top + logoRect.height/2)), 2)
+      );
+      setLogoVisible(distance < 300);
+    }
+  };
 
   // Efecto para generar partículas aleatorias en el fondo
   useEffect(() => {
@@ -42,10 +55,10 @@ export default function HeroSection() {
   const handleMouseMove = (e: React.MouseEvent) => {
     if (heroRef.current) {
       const rect = heroRef.current.getBoundingClientRect();
-      setMousePosition({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top
-      });
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      setMousePosition({ x, y });
+      checkLogoIntersection(e.clientX, e.clientY);
     }
   };
 
@@ -55,6 +68,25 @@ export default function HeroSection() {
       className="relative min-h-screen flex flex-col justify-center items-center px-4 overflow-hidden bg-black"
       onMouseMove={handleMouseMove}
     >
+      <motion.div
+        ref={logoRef}
+        className="absolute -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] pointer-events-none z-0"
+        animate={{
+          opacity: logoVisible ? 0.08 : 0,
+          scale: logoVisible ? 1 : 1,
+        }}
+        transition={{
+          duration: 1,
+          ease: "easeOut"
+        }}
+      >
+        <img 
+          src="images/Logo+bordes blancos.png" 
+          alt="LDi Logo"
+          className="w-full h-full object-contain"
+        />
+      </motion.div>
+
       {/* Partículas de fondo */}
       {particlesArray.map((particle, index) => (
         <motion.div
@@ -146,57 +178,20 @@ export default function HeroSection() {
       <ScrollAnimation delay={0.2}>
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           <Button
-            as="a"
-            href="#contact"
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             size="lg"
             className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700"
           >
             Contáctanos
           </Button>
           <Button
-            as="a"
-            href="#services"
+            onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
             variant="outline"
             size="lg"
             className="border-gray-600 text-white hover:bg-gray-800"
           >
             Nuestros servicios
           </Button>
-        </div>
-      </ScrollAnimation>
-
-      <ScrollAnimation delay={0.3}>
-        <div className="flex gap-6">
-          <motion.a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="bg-gray-800 p-3 rounded-full hover:bg-purple-600 transition-colors"
-          >
-            <Github className="text-white" size={20} />
-          </motion.a>
-          <motion.a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="bg-gray-800 p-3 rounded-full hover:bg-purple-600 transition-colors"
-          >
-            <Twitter className="text-white" size={20} />
-          </motion.a>
-          <motion.a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="bg-gray-800 p-3 rounded-full hover:bg-purple-600 transition-colors"
-          >
-            <Linkedin className="text-white" size={20} />
-          </motion.a>
         </div>
       </ScrollAnimation>
     </section>

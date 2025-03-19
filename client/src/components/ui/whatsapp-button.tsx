@@ -61,7 +61,7 @@ export const WhatsAppButton = () => {
         
         {/* Botón principal */}
         <a
-          href="https://wa.me/5491137962718?text=Hola,%20me%20gustaría%20obtener%20más%20información%20sobre%20sus%20servicios."
+          href="https://wa.me/5491137962718?text=Hola!%20Vi%20su%20pagina%20web%20y%20queria%20hacerles%20una%20consulta"
           target="_blank"
           rel="noopener noreferrer"
           className="block relative z-10"

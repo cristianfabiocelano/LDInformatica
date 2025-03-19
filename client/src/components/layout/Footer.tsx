@@ -1,8 +1,8 @@
-
 import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { 
-  Mail, Phone, MapPin, Facebook, Instagram, Twitter, Linkedin, Github, ArrowUp, Heart
+  Mail, Phone, MapPin, Facebook, Instagram, 
+  ArrowUp
 } from "lucide-react";
 
 export default function Footer() {
@@ -13,23 +13,36 @@ export default function Footer() {
   return (
     <footer className="bg-[#090914] border-t border-gray-800">
       <div className="container mx-auto px-4">
+        <div className="flex justify-center mb-8">
+          <img 
+            src="/images/logo.png" 
+            alt="LD" 
+            className="h-16 opacity-80 brightness-0 invert hue-rotate-[260deg]"
+          />
+        </div>
         {/* Main footer content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-12">
           {/* Column 1: About */}
           <div>
             <div className="mb-6">
-              <Link href="/">
-                <a className="text-2xl font-bold bg-gradient-to-r from-[#f6b3e5] via-[#c876ff] to-[#7232f2] text-transparent bg-clip-text">
-                  LD Informática
-                </a>
-              </Link>
+              <div 
+                className="flex items-center gap-3 cursor-pointer" 
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
+                <img 
+                  src="/images/logo.png" 
+                  alt="LD" 
+                  className="h-8 hover:opacity-80 transition-opacity filter brightness-0 invert hue-rotate-[260deg] opacity-90"
+                />
+                <span className="text-2xl font-bold text-white">Informática</span>
+              </div>
             </div>
             <p className="text-gray-400 mb-6">
               Soluciones tecnológicas personalizadas para impulsar el crecimiento de tu negocio.
             </p>
             <div className="flex space-x-4">
               <motion.a 
-                href="https://facebook.com" 
+                href="https://www.facebook.com/profile.php?id=61567735885555&locale=es_LA" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="bg-gray-800 p-2 rounded-full text-gray-400 hover:text-white hover:bg-purple-600 transition-colors"
@@ -38,7 +51,7 @@ export default function Footer() {
                 <Facebook size={18} />
               </motion.a>
               <motion.a 
-                href="https://instagram.com" 
+                href="https://www.instagram.com/ldinfoar/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="bg-gray-800 p-2 rounded-full text-gray-400 hover:text-white hover:bg-purple-600 transition-colors"
@@ -46,27 +59,9 @@ export default function Footer() {
               >
                 <Instagram size={18} />
               </motion.a>
-              <motion.a 
-                href="https://twitter.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="bg-gray-800 p-2 rounded-full text-gray-400 hover:text-white hover:bg-purple-600 transition-colors"
-                whileHover={{ y: -3 }}
-              >
-                <Twitter size={18} />
-              </motion.a>
-              <motion.a 
-                href="https://linkedin.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="bg-gray-800 p-2 rounded-full text-gray-400 hover:text-white hover:bg-purple-600 transition-colors"
-                whileHover={{ y: -3 }}
-              >
-                <Linkedin size={18} />
-              </motion.a>
             </div>
           </div>
-          
+
           {/* Column 2: Quick Links */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-6">Enlaces rápidos</h3>
@@ -86,13 +81,6 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/blog">
-                  <a className="text-gray-400 hover:text-purple-400 transition-colors">
-                    Blog
-                  </a>
-                </Link>
-              </li>
-              <li>
                 <Link href="/#portfolio">
                   <a className="text-gray-400 hover:text-purple-400 transition-colors">
                     Portfolio
@@ -108,7 +96,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          
+
           {/* Column 3: Services */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-6">Servicios</h3>
@@ -140,7 +128,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          
+
           {/* Column 4: Contact */}
           <div>
             <h3 className="text-lg font-semibold text-white mb-6">Contacto</h3>
@@ -166,10 +154,10 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-        
+
         {/* Divider */}
         <div className="border-t border-gray-800 my-6"></div>
-        
+
         {/* Bottom footer */}
         <div className="flex flex-col md:flex-row justify-between items-center py-6">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">

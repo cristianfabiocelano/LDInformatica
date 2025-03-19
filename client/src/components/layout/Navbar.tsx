@@ -12,20 +12,50 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/">
-            <motion.div 
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center cursor-pointer"
+            <div 
+              className="flex items-center gap-3 cursor-pointer" 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
-              <span className="text-2xl font-bold bg-gradient-to-r from-[#f6b3e5] via-[#c876ff] to-[#7232f2] text-transparent bg-clip-text">
-                LD Informática
-              </span>
-            </motion.div>
+              <img 
+                src="/images/logo.png" 
+                alt="LD" 
+                className="h-12 hover:opacity-80 transition-opacity filter brightness-0 invert hue-rotate-[260deg] opacity-90"
+              />
+              <span className="text-2xl font-bold text-white">Informática</span>
+            </div>
           </Link>
 
           <div className="hidden md:flex md:items-center md:space-x-4">
-            <NavLink href="/#about">Nosotros</NavLink>
-            <NavLink href="/#services">Servicios</NavLink>
-            <NavLink href="/#contact">Contacto</NavLink>
+            <a
+              href="#about"
+              className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Nosotros
+            </a>
+            <a
+              href="#services"
+              className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Servicios
+            </a>
+            <a
+              href="#contact"
+              className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              Contacto
+            </a>
           </div>
 
           <div className="md:hidden">
@@ -50,44 +80,39 @@ export default function Navbar() {
           className="md:hidden"
         >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-[#010108]/95">
-            <MobileNavLink href="/#about" onClick={() => setIsOpen(false)}>
+            <a
+              href="#about"
+              onClick={() => {
+                setIsOpen(false);
+                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >
               Nosotros
-            </MobileNavLink>
-            <MobileNavLink href="/#services" onClick={() => setIsOpen(false)}>
+            </a>
+            <a
+              href="#services"
+              onClick={() => {
+                setIsOpen(false);
+                document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >
               Servicios
-            </MobileNavLink>
-            <MobileNavLink href="/#contact" onClick={() => setIsOpen(false)}>
+            </a>
+            <a
+              href="#contact"
+              onClick={() => {
+                setIsOpen(false);
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+            >
               Contacto
-            </MobileNavLink>
+            </a>
           </div>
         </motion.div>
       )}
     </nav>
-  );
-}
-
-function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <Link href={href}>
-      <motion.a
-        whileHover={{ scale: 1.05 }}
-        className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium cursor-pointer"
-      >
-        {children}
-      </motion.a>
-    </Link>
-  );
-}
-
-function MobileNavLink({ href, onClick, children }: { href: string; onClick: () => void; children: React.ReactNode }) {
-  return (
-    <Link href={href}>
-      <a
-        onClick={onClick}
-        className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-      >
-        {children}
-      </a>
-    </Link>
   );
 }
